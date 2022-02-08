@@ -7,11 +7,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.time.LocalDateTime;
 
-import javax.annotation.PostConstruct;
-
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +27,7 @@ import com.zubentsov.taskmanager.service.TaskService;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(OrderAnnotation.class)
 public class RestApiGetTest {
 	
@@ -49,7 +50,7 @@ public class RestApiGetTest {
 	//Implement @BeforeAll (method must be static), resolving initialization error for TaskService
 	
 	//set test data
-	@PostConstruct
+	@BeforeAll
 	public void loadData() {
 		
 		task1 = new Task("1", "first task", "Description of first task",LocalDateTime.now());
