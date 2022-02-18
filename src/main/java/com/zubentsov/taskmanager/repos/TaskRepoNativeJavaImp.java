@@ -75,9 +75,5 @@ public class TaskRepoNativeJavaImp implements TaskRepo {
                 .findFirst()
                 .orElseThrow(NotFoundException::new);
 	}
-	
-
-	
-	
 
 }

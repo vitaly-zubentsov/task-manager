@@ -17,6 +17,10 @@ public class TaskServiceImpl implements TaskService {
 
 	private TaskRepo taskRepo;
 
+	private Comparator<Task> orderByModificationDateDESC = (t1, t2) -> {
+		return (-1) * (t1.getLastModificationDate().compareTo(t2.getLastModificationDate()));
+	};
+
 	@Autowired
 	public TaskServiceImpl(TaskRepo taskRepo) {
 		this.taskRepo = taskRepo;
@@ -32,9 +36,8 @@ public class TaskServiceImpl implements TaskService {
 
 	@Override
 	public Set<Task> getTasks() {
-		SortedSet<Task> sortedSet = new TreeSet<>(new OrderByModificationDateDESC());
+		SortedSet<Task> sortedSet = new TreeSet<>(orderByModificationDateDESC);
 		sortedSet.addAll(taskRepo.getTasks());
-		
 		return sortedSet;
 	}
 
@@ -71,16 +74,5 @@ public class TaskServiceImpl implements TaskService {
 
 		taskRepo.deleteTask(itaskId);
 	}
-	
-	
-	class OrderByModificationDateDESC implements Comparator<Task>{
-		 
-	    @Override
-	    public int compare(Task t1, Task t2) {
-	        return -(t1.getLastModificationDate().compareTo(t2.getLastModificationDate()));
-	    }
-	}   
 
 }
-
-

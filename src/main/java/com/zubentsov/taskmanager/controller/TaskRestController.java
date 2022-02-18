@@ -17,7 +17,7 @@ import com.zubentsov.taskmanager.service.TaskService;
 
 @RestController
 @RequestMapping("/api")
-public class taskRestController {
+public class TaskRestController {
 
 	@Autowired
 	TaskService taskService;

@@ -58,9 +58,5 @@ public class Task {
 	public void setLastModificationDate(LocalDateTime lastModificationDate) {
 		this.lastModificationDate = lastModificationDate;
 	}
-	
-	
 
-	
-	
 }
